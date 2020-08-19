@@ -6,3 +6,5 @@ A classe MyIO foi utilizada para leitura e escrita de dados. Para utilizar os m�
 Em cada uma das pastas de questões existem os arquivos pub.in e pub.out, que são exemplos de entrada e saída utilizadas naquela determinada questão.
 
 Os enunciados de cada TP estão em suas respectivas pastas.
+
+A pasta "personagens" contém um conjunto de dados sobre personagens da franquia Star Wars. Esses dados foram utilizados pelos códigos implementados a partir do segundo Trabalho Prático (TP02). 
