@@ -91,8 +91,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
@@ -162,7 +162,7 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
     
 }
 
-char *substring(char* padrao, char * entrada){
+	char *substring(char* padrao, char * entrada){
 	char *pointer = strstr(entrada, padrao);
 	return strdup(pointer);
 }//fim substring
