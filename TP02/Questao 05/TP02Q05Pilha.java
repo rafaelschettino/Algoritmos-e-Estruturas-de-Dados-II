@@ -32,7 +32,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	   	setHomeWorld("");	
 	}
 
 	/**
@@ -48,7 +48,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -141,11 +141,11 @@ class Personagem{
 
 	/**
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+   	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -201,11 +201,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -219,29 +219,29 @@ class Personagem{
 */
 public class TP02Q05Pilha{
 	public static void main(String[] args) throws Exception{
-        MyIO.setCharset("UTF-8");
-        Pilha pilha = new Pilha(1000);
+        	MyIO.setCharset("UTF-8");
+        	Pilha pilha = new Pilha(1000);
 		for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
 			Personagem personagem = new Personagem();
 			personagem.lerPersonagem(nomeArq);
-            pilha.inserir(personagem);
+            		pilha.inserir(personagem);
 			//personagem.imprimir();
-        }
+		}//fim for 
 		int n = MyIO.readInt(); //Quantidade de registros a serem inseridos/removidos
 		
-        for(int i = 0; i < n; i++){
-            String comando = MyIO.readLine();
-            Personagem personagem = new Personagem();
-            String[] aux = comando.split(" ");
-            if(aux.length == 2){
-                personagem.lerPersonagem(aux[1]);
-                pilha.inserir(personagem);
-            }else if(aux.length == 1){
-                personagem = pilha.remover();
-                MyIO.println("(R) "+personagem.getNome());
-            }//fim if
-        }//fim for i
-        pilha.mostrar();
+        	for(int i = 0; i < n; i++){
+            		String comando = MyIO.readLine();
+            		Personagem personagem = new Personagem();
+           		String[] aux = comando.split(" ");
+            		if(aux.length == 2){
+                		personagem.lerPersonagem(aux[1]);
+                		pilha.inserir(personagem);
+            		}else if(aux.length == 1){
+                		personagem = pilha.remover();
+                		MyIO.println("(R) "+personagem.getNome());
+            		}//fim if
+        	}//fim for i
+        	pilha.mostrar();
         
 	}
 }
