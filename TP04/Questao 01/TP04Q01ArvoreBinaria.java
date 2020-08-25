@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -142,11 +142,11 @@ class Personagem{
 
 	/*
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -200,7 +200,7 @@ class Personagem{
 
 		if(antes.compareTo(depois) != 0){
 			posFim = s.indexOf(depois);
-		} else {
+		}else{
 			posFim = s.indexOf(depois, posInicio);
 		}
 
@@ -226,24 +226,24 @@ public class TP04Q01ArvoreBinaria {
 			Personagem personagem = new Personagem();
 			personagem.lerPersonagem(nomeArq);
 			arvore.inserir(personagem);
-        }
+        }//fim for
 
-		long inicio = now();
+	long inicio = now();
         for(String nome_pesquisa = MyIO.readLine(); nome_pesquisa.equals("FIM") == false; nome_pesquisa = MyIO.readLine()){
             MyIO.print(nome_pesquisa + " ");
             boolean resp = arvore.pesquisar(nome_pesquisa);
-			if(resp){
-			    MyIO.println("SIM");
-			}
-			else{
-			    MyIO.println("N"+((char)195)+"O");
-			}//fim if
-		}//fim for
-		long fim = now();
-		double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrículaarvoreBinaria.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+time+"\t"+arvore.getComp());
+	    if(resp){
+		MyIO.println("SIM");
+	    }else{
+		MyIO.println("N"+((char)195)+"O");
+	    }//fim if
+	}//fim for
+	    
+	long fim = now();
+	double time = (fim-inicio)/1000.0;
+	FileWriter arq = new FileWriter("matrículaarvoreBinaria.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+time+"\t"+arvore.getComp());
 		
         arq.close();
 
@@ -251,11 +251,11 @@ public class TP04Q01ArvoreBinaria {
 	}
 	
 	/**
-    *Retorna o timestamp atual
-    *@return timestamp atual
-    */
+    	*Retorna o timestamp atual
+        *@return timestamp atual
+    	*/
 	public static long now(){
-		return new Date().getTime();
+	    return new Date().getTime();
 	}
 }
 
@@ -294,7 +294,7 @@ class No{
  */
 class ArvoreBinaria{
     private No raiz;    //Raiz da arvore
-	private int comp = 0;	//Conta o numero de comparacoes realizadas pelo prorgram
+    private int comp = 0;	//Conta o numero de comparacoes realizadas pelo prorgram
 
     /**
     *Construtor da classe
@@ -324,25 +324,25 @@ class ArvoreBinaria{
     private boolean pesquisar(String x, No i){
         boolean resp;
         if(i == null){
-			resp = false;
-			comp++;
+	    resp = false;
+	    comp++;
         }else if(x.compareTo(i.elemento.getNome()) == 0){
-			resp = true;
-			comp+=2;
+	    resp = true;
+	    comp+=2;
         }else if(x.compareTo(i.elemento.getNome()) < 0){
-			MyIO.print("esq ");
-			comp+=3;
+	    MyIO.print("esq ");
+	    comp+=3;
             resp = pesquisar(x, i.esq);
         }else{
-			MyIO.print("dir ");
-			comp+=3;
+	    MyIO.print("dir ");
+	    comp+=3;
             resp = pesquisar(x, i.dir);
         }
 
         return resp;
     }
 
-    /**
+    	/**
 	*Metodo publico iterativo para exibir elementos.
 	*/
 	public void mostrarPre() {
@@ -355,13 +355,13 @@ class ArvoreBinaria{
 	*/
 	private void mostrarPre(No i) {
 	    if (i != null) {
-		    System.out.println(i.elemento.getNome()); // Conteudo do no.
-			mostrarPre(i.esq); // Elementos da esquerda.
-			mostrarPre(i.dir); // Elementos da direita.
-		}//fim if
-    }
+		System.out.println(i.elemento.getNome()); // Conteudo do no.
+		mostrarPre(i.esq); // Elementos da esquerda.
+		mostrarPre(i.dir); // Elementos da direita.
+	    }//fim if
+   	}
     
-    /**
+    	/**
 	*Metodo publico iterativo para inserir elemento.
 	*@param x Elemento a ser inserido.
 	*@throws Exception Se o elemento existir.
@@ -379,22 +379,22 @@ class ArvoreBinaria{
 	*/
 	private No inserir(Personagem x, No i) throws Exception {
 	    if(i == null) {
-            i = new No(x);
-        }else if(x.getNome().compareTo(i.elemento.getNome()) < 0) {
-            i.esq = inserir(x, i.esq);
-        }else if(x.getNome().compareTo(i.elemento.getNome()) > 0) {
-            i.dir = inserir(x, i.dir);
-        }else {
-            throw new Exception("Erro ao inserir!");
-        }
+            	i = new No(x);
+            }else if(x.getNome().compareTo(i.elemento.getNome()) < 0) {
+                i.esq = inserir(x, i.esq);
+            }else if(x.getNome().compareTo(i.elemento.getNome()) > 0) {
+                i.dir = inserir(x, i.dir);
+            }else {
+                throw new Exception("Erro ao inserir!");
+            }//fim if
 
-		return i;
-	}
+	    return i;
+	 }
 
 	/**
 	 * Retorna o numero de comparacoes realizadas pelo programa
 	 */
 	public int getComp(){
-		return this.comp;
+	    return this.comp;
 	}
 }
