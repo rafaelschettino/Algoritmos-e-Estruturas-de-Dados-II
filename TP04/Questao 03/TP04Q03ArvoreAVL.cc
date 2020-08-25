@@ -13,14 +13,14 @@ using namespace std;
 class Personagem{
     private:
         string nome;
-	    int altura;
-	    double peso;
-	    string corDoCabelo;
-	    string corDaPele;
-	    string corDosOlhos;
-	    string anoNascimento;
-	    string genero;
-	    string homeworld;
+	int altura;
+	double peso;
+	string corDoCabelo;
+	string corDaPele;
+	string corDosOlhos;
+	string anoNascimento;
+	string genero;
+	string homeworld;
 
     public:
         Personagem();
@@ -51,7 +51,7 @@ class Personagem{
 *Construtor da classe
 */
 Personagem::Personagem(){
-    setNome("");
+    	setNome("");
 	setAltura(0);
 	setPeso(0);
 	setCorDoCabelo("");
@@ -201,8 +201,8 @@ void Personagem::lerPersonagem(char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		setPeso(0);
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        setPeso(1358);
-    }else{
+        	setPeso(1358);
+    	}else{
 		setPeso(atof(peso_aux));
 	}//fim if
 	free(peso_aux);
@@ -215,7 +215,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	corDoCabelo_aux[i-9] = '\0';
 	//strcpy(personagem.corDoCabelo, corDoCabelo_aux);
-    setCorDoCabelo(corDoCabelo_aux);
+    	setCorDoCabelo(corDoCabelo_aux);
 	free(corDoCabelo_aux);
 
 	//Definir atributo cor da pele
@@ -226,7 +226,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	corDaPele_aux[i-14] = '\0';
 	//strcpy(personagem.corDaPele, corDaPele_aux);
-    setCorDaPele(corDaPele_aux);
+    	setCorDaPele(corDaPele_aux);
 	free(corDaPele_aux);
 
 	//Definir atribuot cor dos olhos
@@ -237,7 +237,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	corDosOlhos_aux[i-13] = '\0';
 	//strcpy(personagem.corDosOlhos, corDosOlhos_aux);
-    setCorDosOlhos(corDosOlhos_aux);
+    	setCorDosOlhos(corDosOlhos_aux);
 	free(corDosOlhos_aux);
 
 	//Definir atributo ano de nascimento
@@ -248,7 +248,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	anoNascimento_aux[i-14] = '\0';
 	//strcpy(personagem.anoNascimento, anoNascimento_aux);
-    setAnoNascimento(anoNascimento_aux);
+    	setAnoNascimento(anoNascimento_aux);
 	free(anoNascimento_aux);
 
 	//Definir atributo genero
@@ -259,7 +259,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	genero_aux[i-10] = '\0';
 	//strcpy(personagem.genero, genero_aux);
-    setGenero(genero_aux);
+    	setGenero(genero_aux);
 	free(genero_aux);
 
 	//Definir atributo homeworld
@@ -270,7 +270,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	homeworld_aux[i-13] = '\0';
 	//strcpy(personagem.homeworld, homeworld_aux);
-    setHomeWorld(homeworld_aux);
+    	setHomeWorld(homeworld_aux);
 	free(homeworld_aux);
 
 	fclose(arq);
@@ -283,7 +283,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 class No {
    public:
         Personagem elemento;    //Conteudo do no.
-	    No *esq, *dir;  //Filhos da esq e dir.
+	No *esq, *dir;  //Filhos da esq e dir.
         int nivel;  //Numero de niveis abaixo do no
         No(Personagem* &);
         void setNivel();
@@ -311,8 +311,8 @@ int No::getNivel(No* no){
 
 class AVL{
    private:
-      No* raiz; // Raiz da arvore.
-	  int comp = 0;	//Conta o numero de comparacoes realizadas pelo programa.
+      	   No* raiz; // Raiz da arvore.
+	   int comp = 0;	//Conta o numero de comparacoes realizadas pelo programa.
 	   bool pesquisar(string, No*);
 	   void mostrarCentral(No*);
 	   void mostrarPre(No*);
@@ -323,12 +323,12 @@ class AVL{
 	   No* rotacionarEsq(No* &);
 
    public:
-      AVL();
-       //int getAltura();  
-	   bool pesquisar(string);
-	   void mostrarPre();
-	   void inserir(Personagem* &);
-	   int getComp();
+        AVL();
+        //int getAltura();  
+	bool pesquisar(string);
+        void mostrarPre();
+	void inserir(Personagem* &);
+	int getComp();
 };
 
 /**
@@ -346,7 +346,7 @@ AVL::AVL(){
 */
 bool AVL::pesquisar(string x) {
 	cout << "raiz ";
-    return pesquisar(x, raiz);
+    	return pesquisar(x, raiz);
 }
 
 /**
@@ -462,24 +462,24 @@ No* AVL::rotacionarDir(No* &i){
 	No* noEsq = i->esq;
 	No* noEsqDir = noEsq->dir;
 
-    noEsq->dir = i;
-    i->esq = noEsqDir;
+    	noEsq->dir = i;
+    	i->esq = noEsqDir;
 
-    i->setNivel();
-    noEsq->setNivel();
+    	i->setNivel();
+    	noEsq->setNivel();
 
 	return noEsq;
 }
 
 No* AVL::rotacionarEsq(No* &i){
 	No* noDir = i->dir;
-    No* noDirEsq = noDir->esq;
+    	No* noDirEsq = noDir->esq;
 
-    noDir->esq = i;
-    i->dir = noDirEsq;
+    	noDir->esq = i;
+    	i->dir = noDirEsq;
 
-    i->setNivel();
-    noDir->setNivel();
+    	i->setNivel();
+    	noDir->setNivel();
 
 	return noDir;
 }
@@ -500,12 +500,12 @@ int main(){
 		personagem->lerPersonagem(nomeArq);
 		fflush(stdin);
 		arvore->inserir(personagem);
-        scanf("%s",  nomeArq);
+        	scanf("%s",  nomeArq);
 	}//fim while
 
 	clock_t comeco = clock();
 	cin.ignore();
-    getline(cin, nome_pesquisa);
+    	getline(cin, nome_pesquisa);
 	while(nome_pesquisa.compare("FIM") != 0){
 		cout << nome_pesquisa << " ";
 		bool resp = arvore->pesquisar(nome_pesquisa);
@@ -515,7 +515,7 @@ int main(){
 			cout << "NÃO";
 		}//fim if
 		cout << "\n";
-    	getline(cin, nome_pesquisa);
+    		getline(cin, nome_pesquisa);
 	}//fim while
 	clock_t fim = clock();
 	double total = (fim-comeco) / 1000.0;
