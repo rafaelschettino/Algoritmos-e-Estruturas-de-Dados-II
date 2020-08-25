@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/*
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -142,11 +142,11 @@ class Personagem{
 
 	/*
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -223,35 +223,35 @@ public class TP04Q05HashDiretaReserva {
         MyIO.setCharset("UTF-8");
         Hash tabela = new Hash(21,9);	//Cria uma hash com tamanho de tabela 21 e area de reserva de tamanho 9.
         for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			tabela.inserir(personagem);
-        }
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		tabela.inserir(personagem);
+        }//fim for
 
-		long inicio = now();
+	long inicio = now();
         for(String nome_pesquisa = MyIO.readLine(); nome_pesquisa.equals("FIM") == false; nome_pesquisa = MyIO.readLine()){
-            MyIO.print(nome_pesquisa + " ");
-            boolean resp = tabela.pesquisar(nome_pesquisa);
-			if(resp){
-			    MyIO.println("SIM");
-			}
-			else{
-			    MyIO.println("N"+((char)195)+"O");
-			}//fim if
-		}//fim for
-		long fim = now();
-		double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_hashReserva.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+time+"\t"+tabela.getComp());
+            	MyIO.print(nome_pesquisa + " ");
+            	boolean resp = tabela.pesquisar(nome_pesquisa);
+		if(resp){
+		    MyIO.println("SIM");
+		}
+		else{
+		    MyIO.println("N"+((char)195)+"O");
+		}//fim if
+	}//fim for
+	long fim = now();
+	double time = (fim-inicio)/1000.0;
+	FileWriter arq = new FileWriter("matrícula_hashReserva.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+time+"\t"+tabela.getComp());
 
-		arq.close();
-	}
+	arq.close();
+    }
 	
 	/**
-    *Retorna o timestamp atual
-    *@return timestamp atual
-    */
+    	*Retorna o timestamp atual
+    	*@return timestamp atual
+    	*/
 	public static long now(){
 		return new Date().getTime();
 	}
@@ -260,7 +260,7 @@ public class TP04Q05HashDiretaReserva {
 class Hash{
     Personagem tabela[];
     int m1, m2, m, reserva;
-	int comp = 0;	//Conta o numero de comparacoes realizadas pelo programa.
+    int comp = 0;	//Conta o numero de comparacoes realizadas pelo programa.
 
     public Hash (int m1, int m2){
         this.m1 = m1;
@@ -299,27 +299,26 @@ class Hash{
     public boolean pesquisar(String x){
         boolean resp = false;
 		
-		//Procura o elemento na tabela 
+	//Procura o elemento na tabela 
         for(int i = 0; i < m1 && resp == false; i++){
-			if(tabela[i] != null && x.compareTo(tabela[i].getNome()) == 0){
-				resp = true;
+		if(tabela[i] != null && x.compareTo(tabela[i].getNome()) == 0){
+			resp = true;
+		}//fim if
+		comp++;
+	}//fim for i
+
+	//Caso o elemento nao tenha sida encontrado na tabela, realiza a pesquisa na area de reserva
+	if(resp == false){
+        	for(int i = 0; resp == false && i < reserva; i++){
+           		if(x.compareTo(tabela[m1+i].getNome()) == 0){
+            	    		resp = true;
 			}//fim if
 			comp++;
 		}//fim for i
-
-		//Caso o elemento nao tenha sida encontrado na tabela, realiza a pesquisa na area de reserva
-		if(resp == false){
-        	for(int i = 0; resp == false && i < reserva; i++){
-            	if(x.compareTo(tabela[m1+i].getNome()) == 0){
-            	    resp = true;
-				}//fim if
-				comp++;
-			}//fim for i
-		}//fim if
-		
-		
+	}//fim if
+				
         return resp;
-	}
+    }
 	
 	/**
 	*Retorna o numero de comparacoes realizadas por esse programa
