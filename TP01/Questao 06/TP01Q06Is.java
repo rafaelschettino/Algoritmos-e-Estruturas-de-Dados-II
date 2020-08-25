@@ -55,12 +55,12 @@ class TP01Q06Is{
       boolean resp = true;
       int i = 0;
       while(resp && i < s.length()){
-        if(s.charAt(i) >= '0' && s.charAt(i) <= '9'){
-          resp = true;
-        }else{
-          resp = false;
-        }//fim if
-        i++;
+          if(s.charAt(i) >= '0' && s.charAt(i) <= '9'){
+              resp = true;
+          }else{
+              resp = false;
+          }//fim if
+          i++;
       }//fim while
   
       return resp;
