@@ -50,20 +50,20 @@ int main(){
 		Personagem personagem;
 		personagem = lerPersonagem(personagem, nomeArq);
 		fflush(stdin);
-        inserirFim(personagem);
+        	inserirFim(personagem);
 		scanf("%s",  nomeArq);
 	}//fim while
 
-    int num; //Quantidade de registros a serem inseridos/removidos
-    scanf("%d", &num);
-	char comando[100];
+   	int num; //Quantidade de registros a serem inseridos/removidos
+    	scanf("%d", &num);
+    	char comando[100];
 
-    for(int i = 0; i < num; i++){
+    	for(int i = 0; i < num; i++){
 		fflush(stdin);
 		scanf(" %[^\n]s", comando);
 		interpretar(comando);
-    }//fim for i
-    mostrar();
+    	}//fim for i
+    	mostrar();
 
 	return 0;
 }
@@ -122,8 +122,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
