@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -146,7 +146,7 @@ class Personagem{
     */
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -221,30 +221,30 @@ class Personagem{
 public class TP02Q09Selecao{
     public static void main(String[] args) throws Exception{
         MyIO.setCharset("UTF-8");
-		Lista lista = new Lista(1000);
-		for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			lista.inserirFim(personagem);
-			//personagem.imprimir();
-        }
+	Lista lista = new Lista(1000);
+	for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		lista.inserirFim(personagem);
+		//personagem.imprimir();
+	}//fim for
 		
-		long inicio = now();
-		lista.selecao();
-		long fim = now();
-		double time=(fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_selecao.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
+	long inicio = now();
+	lista.selecao();
+	long fim = now();
+	double time=(fim-inicio)/1000.0;
+	FileWriter arq = new FileWriter("matrícula_selecao.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
 		
         arq.close();
         lista.mostrar();
-	}
+    }
 	
 	/**
-    *Retorna o timestamp atual
-    *@return timestamp atual
-    */
+    	*Retorna o timestamp atual
+    	*@return timestamp atual
+    	*/
 	public static long now(){
 		return new Date().getTime();
 	}
@@ -257,9 +257,9 @@ public class TP02Q09Selecao{
 */
 class Lista{
     private Personagem[] array;
-	private int n;
-	private int mov = 0;	//Conta o numero de movimentacoes
-	private int comp = 0;	//Conta o numero de comparacoes
+    private int n;
+    private int mov = 0;	//Conta o numero de movimentacoes
+    private int comp = 0;	//Conta o numero de comparacoes
 
     /*
     *Construtor da classe.
@@ -402,12 +402,12 @@ class Lista{
             int menor = i;
             for(int j = (i + 1); j < n; j++){
                 if(array[menor].getNome().compareTo(array[j].getNome()) > 0){
-					menor = j;
-				}//fim if
-				comp++;
+			menor = j;
+		}//fim if
+		comp++;
             }//fim for j
-			swap(menor, i);
-			mov += 3;
+	    swap(menor, i);
+	    mov += 3;
          }//fim for i
     }
 
@@ -419,23 +419,29 @@ class Lista{
     public void swap(int i, int j) {
         Personagem temp = array[i];
         array[i] = array[j];
-		array[j] = temp;
-	}
+	array[j] = temp;
+    }
 	
-	public int getComp(){
-		return comp;
-	}
+    /**
+    *Retorna o numero de comparacoes realizadas pelo programa
+    */
+    public int getComp(){
+    	return comp;
+    }
 
-	public int getMov(){
-		return mov;
-	}
+    /**
+    *Retorna o numero de movimentacoes realizadas pelo programa
+    */
+    public int getMov(){
+	return mov;
+    }
 
     /**
     *Mostra os elementos da lista separados por espacos
     */
     public void mostrar(){
         for(int i = 0; i < n; i++){
-			array[i].imprimir();
+		array[i].imprimir();
         }//fim for i
     }
 }
