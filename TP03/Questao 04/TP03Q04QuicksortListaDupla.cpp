@@ -66,31 +66,31 @@ void mostrar();
 int main(){
 	char nomeArq[200];
 	scanf("%s", nomeArq);
-    int i = 0;
+    	int i = 0;
 	while(nomeArq[0] != 'F' && nomeArq[1] != 'I' && nomeArq[2] != 'M'){
 		Personagem personagem;
 		personagem = lerPersonagem(personagem, nomeArq);
 		fflush(stdin);
-        //Caso seja a primeira insercao da lista, chamamos o metodo start() para setar as celulas primeiro e ultimo
-        if(i == 0){
-            start(personagem);
-        }//fim if   
-        inserirFim(personagem);
-        i++;
+        	//Caso seja a primeira insercao da lista, chamamos o metodo start() para setar as celulas primeiro e ultimo
+        	if(i == 0){
+            		start(personagem);
+        	}//fim if   
+        	inserirFim(personagem);
+        	i++;
 		scanf("%s",  nomeArq);
 	}//fim while
 
 	clock_t inicio = clock();
-    quicksortRec();
+    	quicksortRec();
 	//Realiza o metodo de insercao para ordenar pelo atributo nome, aqueles personagens que tem cor de cabelo igual
-    insercaoPorNome();
+    	insercaoPorNome();
 	clock_t fim = clock();
 	double total = (fim-inicio) / 1000.0;
 	FILE *arq = fopen("matrícula_quicksort2.txt", "w");
 	fprintf(arq, "651636\t%d\t%d\t%lf", getComp(), getMov(), total);
 
 	fclose(arq);
-    mostrar();
+    	mostrar();
 
 	return 0;
 }
@@ -149,8 +149,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
@@ -279,8 +279,8 @@ int mov;        //Conta o numero de movimentacoes efetuadas pelo programa;
 void start(Personagem x){
     primeiro = novaCelulaDupla(x);
     ultimo = primeiro;
-	comp = 0;
-	mov = 0;
+    comp = 0;
+    mov = 0;
 }
 
 /**
@@ -439,27 +439,27 @@ void quicksort(int esq, int dir){
     CelulaDupla* CelulaPivo = getPosElemento((dir+esq)/2);
     char* pivo = (char*)malloc(50*(sizeof(char)));
     strcpy(pivo, CelulaPivo->elemento.corDoCabelo);
-	mov++;
+    mov++;
     
     while(i <= j){
         while(strcmp(getPosElemento(i)->elemento.corDoCabelo, pivo) < 0){
-            i++;
-			comp++;
+        	i++;
+		comp++;
         }//fim while
 
         while(strcmp(getPosElemento(j)->elemento.corDoCabelo, pivo) > 0){
-            j--;
-			comp++;
+        	j--;
+		comp++;
         }//fim while
 
         if(i <= j){
-            //Swap dos elementos
-            Personagem tmp = getPosElemento(i)->elemento;
-            getPosElemento(i)->elemento = getPosElemento(j)->elemento;
-            getPosElemento(j)->elemento = tmp;
-            i++;
-            j--;
-			mov += 3;
+            	//Swap dos elementos
+            	Personagem tmp = getPosElemento(i)->elemento;
+            	getPosElemento(i)->elemento = getPosElemento(j)->elemento;
+            	getPosElemento(j)->elemento = tmp;
+            	i++;
+            	j--;
+	    	mov += 3;
         }//fim if
     }//fim while
 
@@ -473,7 +473,7 @@ void quicksort(int esq, int dir){
 *Ordena por nome, aqueles elementos que possuem cor de cabelo igual
 */
 void insercaoPorNome(){
-    for(CelulaDupla* i = primeiro->prox->prox; i != NULL; i = i->prox){
+    	for(CelulaDupla* i = primeiro->prox->prox; i != NULL; i = i->prox){
 		Personagem tmp = i->elemento;
 		CelulaDupla* j = i->ant;
 		mov++;
@@ -484,7 +484,7 @@ void insercaoPorNome(){
 			j = j->ant;
 			comp++;
 		}//fim while
-	    j->prox->elemento = clone(tmp);
+	    	j->prox->elemento = clone(tmp);
 		mov++;
 	}//fim for i
 }
