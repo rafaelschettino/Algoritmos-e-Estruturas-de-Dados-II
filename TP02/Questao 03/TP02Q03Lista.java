@@ -32,7 +32,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/**
@@ -48,7 +48,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -141,11 +141,11 @@ class Personagem{
 
 	/**
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -201,11 +201,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -226,8 +226,9 @@ public class TP02Q03Lista{
 			personagem.lerPersonagem(nomeArq);
 			lista.inserirFim(personagem);
 			//personagem.imprimir();
-		}
+		}//fim for
 		int n = MyIO.readInt();
+		
 		for(int i = 0; i < n; i++){
 			String comando = MyIO.readLine();
 			Personagem personagem = new Personagem();
@@ -429,8 +430,8 @@ class Lista{
     */
     public void mostrar(){
         for(int i = 0; i < n; i++){
-			MyIO.print("["+i+"] ");
-			array[i].imprimir();
+		MyIO.print("["+i+"] ");
+		array[i].imprimir();
         }//fim for i
     }
 }
