@@ -53,21 +53,21 @@ int main(){
 	scanf("%s", nomeArq);
 	while(nomeArq[0] != 'F' && nomeArq[1] != 'I' && nomeArq[2] != 'M'){
 		Personagem personagem;
-        personagem = lerPersonagem(personagem, nomeArq);
+        	personagem = lerPersonagem(personagem, nomeArq);
 		fflush(stdin);
-        inserirFim(personagem);
+        	inserirFim(personagem);
 		scanf("%s",  nomeArq);
 	}//fim while
     
 	clock_t comeco = clock();
-    selecao();
+    	selecao();
 	clock_t fim = clock();
 	double total = (fim-comeco) / 1000.0;
 	FILE *arq = fopen("matrículaselecaoRecursiva.txt", "w");
 	fprintf(arq, "651636\t%d\t%d\t%lf", getComp(), getMov(), total);
 
 	fclose(arq);
-    mostrar();
+    	mostrar();
 
 	return 0;
 }
@@ -126,8 +126,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
@@ -394,19 +394,19 @@ void selecao(){
 *Realiza de maneira recursiva e utilizando o metodo de selecao, a ordenacao da lista.
 */
 void selecaoRecursiva(int i, int j, int menor){
-    if(i >= (n-1)){
+    	if(i >= (n-1)){
    	  	comp++;
    	}else if(j == n){
-   	    comp++;
+   	    	comp++;
    	  	swap(menor, i);
    	  	selecaoRecursiva(i+1,i+1,i+1);
    	}else if(strcmp(array[menor].nome, array[j].nome) > 0){
-   	    comp++;
+   	    	comp++;
    	  	menor = j;
    	  	selecaoRecursiva(i, j+1, menor);
    	}else{
-   	    comp++;
-        selecaoRecursiva(i, j+1, menor);
+   	    	comp++;
+        	selecaoRecursiva(i, j+1, menor);
    	}//fim if
 }
 
