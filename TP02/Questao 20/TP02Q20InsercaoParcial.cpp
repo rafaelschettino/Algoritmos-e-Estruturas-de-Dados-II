@@ -60,16 +60,16 @@ int main(){
 		i++;
 	}//fim while
 
-    int k = 10;
+    	int k = 10;
 	clock_t inicio = clock();
-    insercaoParcial(k);
+    	insercaoParcial(k);
 	clock_t fim = clock();
 	double total = (fim-inicio) / 1000.0;
 	FILE *arq = fopen("matrícula_insercaoParcial.txt", "w");
 	fprintf(arq, "651636\t%d\t%d\t%lf", getComp(), getMov(), total);
 
 	fclose(arq);
-    mostrar(k);
+    	mostrar(k);
 
 	return 0;
 }
@@ -128,8 +128,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
