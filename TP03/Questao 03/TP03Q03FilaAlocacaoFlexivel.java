@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/*
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -142,11 +142,11 @@ class Personagem{
 
 	/*
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -223,26 +223,26 @@ public class TP03Q03FilaAlocacaoFlexivel {
         MyIO.setCharset("UTF-8");
         Fila fila = new Fila();
         for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-            fila.inserir(personagem);
-            fila.calculaMedia();
-        }
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+            	fila.inserir(personagem);
+            	fila.calculaMedia();
+        }//fim for
 
         int n = MyIO.readInt(); //Quantidade de registros a serem inseridos/removidos
         
         for(int i = 0; i < n; i++){
-            String comando = MyIO.readLine();
-            Personagem personagem = new Personagem();
-            String[] aux = comando.split(" ");
-            if(aux.length == 2){
-                personagem.lerPersonagem(aux[1]);
-                fila.inserir(personagem);
-                fila.calculaMedia();
-            }else if(aux.length == 1){
-                personagem = fila.remover();
-                MyIO.println("(R) "+personagem.getNome());
-            }//fim if
+            	String comando = MyIO.readLine();
+           	Personagem personagem = new Personagem();
+            	String[] aux = comando.split(" ");
+            	if(aux.length == 2){
+                	personagem.lerPersonagem(aux[1]);
+                	fila.inserir(personagem);
+                	fila.calculaMedia();
+            	}else if(aux.length == 1){
+                	personagem = fila.remover();
+                	MyIO.println("(R) "+personagem.getNome());
+            	}//fim if
         }//fim for i
 
         fila.mostrar();
