@@ -52,21 +52,21 @@ int main(){
 	scanf("%s", nomeArq);
 	while(nomeArq[0] != 'F' && nomeArq[1] != 'I' && nomeArq[2] != 'M'){
 		Personagem personagem;
-        personagem = lerPersonagem(personagem, nomeArq);
+        	personagem = lerPersonagem(personagem, nomeArq);
 		fflush(stdin);
-        inserirFim(personagem);
+        	inserirFim(personagem);
 		scanf("%s",  nomeArq);
 	}//fim while
     
 	clock_t inicio = clock();
-    shellsort();
+    	shellsort();
 	clock_t fim = clock();
 	double total = (fim-inicio) / 1000.0;
 	FILE *arq = fopen("matrícula_shellsort.txt", "w");
 	fprintf(arq, "651636\t%d\t%d\t%lf", getComp(), getMov(), total);
 
 	fclose(arq);
-    mostrar();
+    	mostrar();
 
 	return 0;
 }
@@ -125,8 +125,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
@@ -403,22 +403,22 @@ void shellsort(){
 void insercaoPorCor(int cor, int h){
     for (int i = (h + cor); i < n; i += h) {
         Personagem tmp = array[i];
-		mov++;
+	mov++;
         int j = i - h;
         while((j >= 0) && (array[j].peso > tmp.peso)){
             array[j + h] = array[j];
             j -= h;
-			comp++;
+	    comp++;
         }//fim while
 
-		//Caso os pesos de dois elementos sejam iguais, a ordenacao entre eles ocorre por nome
-		while((j >= 0) && (array[j].peso == tmp.peso) && strcmp(array[j].nome, tmp.nome) > 0){
-			array[j + h] = array[j];
+	//Caso os pesos de dois elementos sejam iguais, a ordenacao entre eles ocorre por nome
+	while((j >= 0) && (array[j].peso == tmp.peso) && strcmp(array[j].nome, tmp.nome) > 0){
+	    array[j + h] = array[j];
             j -= h;
-			comp += 2;
-		}//fim while
+	    comp += 2;
+	}//fim while
         array[j + h] = tmp;
-		mov++;
+	mov++;
     }//fim for 
 }
 
