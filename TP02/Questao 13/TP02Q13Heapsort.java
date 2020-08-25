@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -146,7 +146,7 @@ class Personagem{
     */
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -221,13 +221,13 @@ class Personagem{
 public class TP02Q13Heapsort{
     public static void main(String[] args) throws Exception{
         MyIO.setCharset("UTF-8");
-		Lista lista = new Lista(1000);
-		for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			lista.inserirFim(personagem);
-			//personagem.imprimir();
-        }
+	Lista lista = new Lista(1000);
+	for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		lista.inserirFim(personagem);
+		//personagem.imprimir();
+        }//fim for
         
         long inicio = now();
         lista.heapsort();
@@ -235,18 +235,18 @@ public class TP02Q13Heapsort{
         lista.insercaoPorNome();
         long fim = now();
         double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_heapsort.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
+	FileWriter arq = new FileWriter("matrícula_heapsort.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
 
         arq.close();
         lista.mostrar();
     }
 
-    /**
-    *Retorna o timestamp atual
-    *@return timestamp atual
-    */
+    	/**
+    	*Retorna o timestamp atual
+    	*@return timestamp atual
+    	*/
 	public static long now(){
 		return new Date().getTime();
 	}
@@ -432,13 +432,13 @@ class Lista{
         for(int i = 0; i < n; i++){
             tmp[i+1] = array[i].clone();
             mov++;
-        }
+        }//fim for i
         array = tmp;
        
         //Contrucao do heap
         for(int tamHeap = 2; tamHeap <= n; tamHeap++){
             constroi(tamHeap);
-        }
+        }//fim for
        
         //Ordenacao propriamente dita
         int tamHeap = n;
@@ -472,21 +472,21 @@ class Lista{
     *Metodo de ordenacao por Insercao 
     */
     public void insercaoPorNome(){
-        for(int i = 1; i < n; i++) {
-			Personagem tmp = array[i].clone();
-			mov++;
-            int j = i - 1;
+    	for(int i = 1; i < n; i++) {
+		Personagem tmp = array[i].clone();
+		mov++;
+                int j = i - 1;
 
-            //Caso as alturas de dois elementos sejam iguais, a ordenacao entre eles ocorre por nome
-            while((j >= 0) && (array[j].getAltura() == tmp.getAltura()) && (array[j].getNome().compareTo(tmp.getNome()) > 0)){
-				array[j + 1] = array[j].clone();
-				comp++;
-                j--;
-            }//fim while
-			array[j + 1] = tmp;
-			mov++;
+            	//Caso as alturas de dois elementos sejam iguais, a ordenacao entre eles ocorre por nome
+           	while((j >= 0) && (array[j].getAltura() == tmp.getAltura()) && (array[j].getNome().compareTo(tmp.getNome()) > 0)){
+			array[j + 1] = array[j].clone();
+			comp++;
+                	j--;
+            	}//fim while
+		array[j + 1] = tmp;
+		mov++;
         }//fim for i
-	}
+    }
 
     /*
     *Retorna o numero de comparacoes realizadas pelo programa
@@ -507,8 +507,8 @@ class Lista{
     */
     public void mostrar(){
         for(int i = 0; i < n; i++){
-			//MyIO.print("["+i+"] ");
-			array[i].imprimir();
+		//MyIO.print("["+i+"] ");
+		array[i].imprimir();
         }//fim for i
     }
 }
