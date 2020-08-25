@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/*
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -142,11 +142,11 @@ class Personagem{
 
 	/*
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -223,46 +223,46 @@ public class TP04Q06HashComRehash {
         MyIO.setCharset("UTF-8");
         Hash tabela = new Hash(25);
         for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			tabela.inserir(personagem);
-		}
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		tabela.inserir(personagem);
+	}//fim for
 
-		long inicio = now();
+	long inicio = now();
         for(String nome_pesquisa = MyIO.readLine(); nome_pesquisa.equals("FIM") == false; nome_pesquisa = MyIO.readLine()){
-            MyIO.print(nome_pesquisa + " ");
-            boolean resp = tabela.pesquisar(nome_pesquisa);
-			if(resp){
-			    MyIO.println("SIM");
-			}
-			else{
-			    MyIO.println("N"+((char)195)+"O");
-			}//fim if
+        	MyIO.print(nome_pesquisa + " ");
+	        boolean resp = tabela.pesquisar(nome_pesquisa);
+		if(resp){
+		    MyIO.println("SIM");
+		}
+		else{
+		    MyIO.println("N"+((char)195)+"O");
+		}//fim if
         }//fim for
-		long fim = now();
-		double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_hashRehash.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+time+"\t"+tabela.getComp());
+	long fim = now();
+	double time = (fim-inicio)/1000.0;
+	FileWriter arq = new FileWriter("matrícula_hashRehash.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+time+"\t"+tabela.getComp());
 
-		arq.close();
+	arq.close();
 
         //MyIO.println(tabela.tabela.length);
         //tabela.mostrar();
-	}
+    }
 	
 	/**
-    *Retorna o timestamp atual
-    *@return timestamp atual
-    */
+    	*Retorna o timestamp atual
+    	*@return timestamp atual
+    	*/
 	public static long now(){
 		return new Date().getTime();
 	}
 }
 class Hash{
     Personagem tabela[];
-	int m;
-	int comp = 0;	//Conta o numero de comparacoes feitas pelo programa
+    int m;
+    int comp = 0;	//Conta o numero de comparacoes feitas pelo programa
 
     public Hash(int m){
         this.m = m;
@@ -275,33 +275,32 @@ class Hash{
 
     public int reh(Personagem elemento){
         int rh = elemento.getAltura();
-        return ++rh % m;
-        
+        return ++rh % m;        
     }
 
-	/**
-	 * Metodo publico para inserir Personagens na Hash.
-	 * @param Personagem personagem a ser inserido.
-	 * @return resp boolean <code>true</code> se o elemento foi inserido
-	 * e <code>false</code> caso contrario.
-	 */
+    /**
+    * Metodo publico para inserir Personagens na Hash.
+    * @param Personagem personagem a ser inserido.
+    * @return resp boolean <code>true</code> se o elemento foi inserido
+    * e <code>false</code> caso contrario.
+    */
     public boolean inserir(Personagem elemento){
         boolean resp = false;
    
         if(elemento != null){   
-			int pos = h(elemento);  
-			comp++; 
-            if(tabela[pos] == null){
-                tabela[pos] = elemento.clone();
-                resp = true;   
-            }else{   
-				pos = reh(elemento);   
-				comp++;
-                if(tabela[pos] == null){
-                    tabela[pos] = elemento.clone();
-                    resp = true;
-                }//fim if
-            }//fim if
+		int pos = h(elemento);  
+		comp++; 
+            	if(tabela[pos] == null){
+                	tabela[pos] = elemento.clone();
+                	resp = true;   
+            	}else{   
+			pos = reh(elemento);   
+			comp++;
+                	if(tabela[pos] == null){
+                    		tabela[pos] = elemento.clone();
+                    		resp = true;
+                	}//fim if
+            	}//fim if
         }//fim if(elemento != null)
    
         return resp;
@@ -313,25 +312,25 @@ class Hash{
 	*@return boolean resp <code>true</code> se o elemento foi encontrado
 	*e <code>false</code> caso contrario.
 	*/
-    public boolean pesquisar(String x){
-        boolean resp = false;
+    	public boolean pesquisar(String x){
+        	boolean resp = false;
    
-        for(int i = 0; i < m && resp == false; i++){
-            if(tabela[i] != null && x.compareTo(tabela[i].getNome()) == 0){
-                resp = true;
+        	for(int i = 0; i < m && resp == false; i++){
+            		if(tabela[i] != null && x.compareTo(tabela[i].getNome()) == 0){
+                		resp = true;
 			}//fim if
 			comp++;
-        }//fim for i
+        	}//fim for i
 
-        return resp;
-    }
-
-    public void mostrar(){
-        for(int i = 0; i < m; i++){
-            if(tabela[i] != null){
-                MyIO.println(tabela[i].getNome());
-            }
+        	return resp;
         }
+
+    	public void mostrar(){
+        	for(int i = 0; i < m; i++){
+            		if(tabela[i] != null){
+                		MyIO.println(tabela[i].getNome());
+            		}//fim if
+        	}//fim for i
 	}
 	
 	/**
