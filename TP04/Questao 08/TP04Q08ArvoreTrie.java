@@ -34,7 +34,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/*
@@ -50,7 +50,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -143,11 +143,11 @@ class Personagem{
 
 	/*
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -203,11 +203,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -221,59 +221,58 @@ class Personagem{
 */
 public class TP04Q08ArvoreTrie {
     public static void main(String[] args) throws Exception{
-		MyIO.setCharset("UTF-8");
-		ArvoreTrie trie = new ArvoreTrie();			//Primeira Arvore Trie
-        ArvoreTrie trie2 = new ArvoreTrie();		//Segunda Arvore Trie
+	MyIO.setCharset("UTF-8");
+	ArvoreTrie trie = new ArvoreTrie();	//Primeira Arvore Trie
+        ArvoreTrie trie2 = new ArvoreTrie();	//Segunda Arvore Trie
         ArvoreTrie resultante = new ArvoreTrie();    //Arvore resultante apos o merge das duas primeiras
 
         //Le os personagens e insere o nome de cada um na primeira arvore
         for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			trie.inserir(personagem.getNome());
-        }
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		trie.inserir(personagem.getNome());
+        }//fim for
 
         //Le os personagens e insere o nome de cada um na segunda arvore
         for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-            Personagem personagem = new Personagem();
-            personagem.lerPersonagem(nomeArq);
-            trie2.inserir(personagem.getNome());
-        }
+        	Personagem personagem = new Personagem();
+            	personagem.lerPersonagem(nomeArq);
+            	trie2.inserir(personagem.getNome());
+        }//fim for
 
-		//Realiza a uniao das duas arvores em uma unica arvore resultante
-		resultante.merge(trie);
-		resultante.merge(trie2);
+	//Realiza a uniao das duas arvores em uma unica arvore resultante
+	resultante.merge(trie);
+	resultante.merge(trie2);
         //merge.mostrar();		
 		
-		long inicio = now();
-		//Realiza a pesquisa de elementos na arvore resultante apos o merge
+	long inicio = now();
+	//Realiza a pesquisa de elementos na arvore resultante apos o merge
         for(String nome_pesquisa = MyIO.readLine(); nome_pesquisa.equals("FIM") == false; nome_pesquisa = MyIO.readLine()){
-            MyIO.print(nome_pesquisa + " ");
-            boolean resp = resultante.pesquisar(nome_pesquisa);
-			if(resp){
-			    MyIO.println("SIM");
-			}
-			else{
-			    MyIO.println("N"+((char)195)+"O");
-			}//fim if
-		}//fim for  
+            	MyIO.print(nome_pesquisa + " ");
+            	boolean resp = resultante.pesquisar(nome_pesquisa);
+		if(resp){
+		    MyIO.println("SIM");
+		}else{
+		    MyIO.println("N"+((char)195)+"O");
+		}//fim if
+	}//fim for  
 		
-		long fim = now();
-		double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_arvoreTrie.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+time+"\t"+resultante.getComp());
+	long fim = now();
+	double time = (fim-inicio)/1000.0;
+	FileWriter arq = new FileWriter("matrícula_arvoreTrie.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+time+"\t"+resultante.getComp());
 
-		arq.close();
+	arq.close();
 
         //trie.mostrar();
         //trie2.mostrar();
-	}
+    }
 	
 	/**
-    *Retorna o timestamp atual
-    *@return timestamp atual
-    */
+    	*Retorna o timestamp atual
+    	*@return timestamp atual
+    	*/
 	public static long now(){
 		return new Date().getTime();
 	}
@@ -288,17 +287,17 @@ class No {
     public No[] prox;
     public boolean folha;
 	
-	/**
-	*Construtor da classe
-	*/
+    /**
+    *Construtor da classe
+    */
     public No (){
         this(' ');
     }
  
-	/**
-	*Construtor da classe 
-	*@param char elemento conteudo do no 
-	*/
+    /**
+    *Construtor da classe 
+    *@param char elemento conteudo do no 
+    */
     public No(char elemento){
         this.elemento = elemento;
  
@@ -328,16 +327,16 @@ class ArvoreTrie {
 	/**
 	*Construtor da classe 
 	*/
-    public ArvoreTrie(){
-        raiz = new No();
-    }
+    	public ArvoreTrie(){
+        	raiz = new No();
+    	}
  
 	/**
 	*Metodo publico para inserir elementos na Arvore Trie
 	*@param s String a ser inserida.
 	*/
-    public void inserir(String s) throws Exception {
-        inserir(s, raiz, 0);
+    	public void inserir(String s) throws Exception {
+        	inserir(s, raiz, 0);
 	}
 	
 	public void inserirMerge(String s) throws Exception{
@@ -347,61 +346,61 @@ class ArvoreTrie {
 	/**
 	*Metodo privado para inserir elementos na Arvore Trie
 	*/
-    private void inserir(String s, No no, int i) throws Exception {
-        //System.out.print("\nEM NO(" + no.elemento + ") (" + i + ")");
-        if(no.prox[s.charAt(i)] == null){
-  	    	//System.out.print("--> criando filho(" + s.charAt(i) + ")");
-      		no.prox[s.charAt(i)] = new No(s.charAt(i)); 
-       		if(i == s.length() - 1){
-            	//System.out.print("(folha)");
-            	no.prox[s.charAt(i)].folha = true;
-        	}else{
-            	inserir(s, no.prox[s.charAt(i)], i + 1);
-        	}//fim if 
-       	}else if (no.prox[s.charAt(i)].folha == false && i < s.length() - 1){
-        	inserir(s, no.prox[s.charAt(i)], i + 1); 
-       	}else {
-        	throw new Exception("Erro ao inserir!");
-       	}//fim if 
+    	private void inserir(String s, No no, int i) throws Exception {
+        	//System.out.print("\nEM NO(" + no.elemento + ") (" + i + ")");
+        	if(no.prox[s.charAt(i)] == null){
+  	    		//System.out.print("--> criando filho(" + s.charAt(i) + ")");
+      			no.prox[s.charAt(i)] = new No(s.charAt(i)); 
+       			if(i == s.length() - 1){
+            			//System.out.print("(folha)");
+            			no.prox[s.charAt(i)].folha = true;
+        		}else{
+            			inserir(s, no.prox[s.charAt(i)], i + 1);
+        		}//fim if 
+       		}else if (no.prox[s.charAt(i)].folha == false && i < s.length() - 1){
+        		inserir(s, no.prox[s.charAt(i)], i + 1); 
+       		}else {
+        		throw new Exception("Erro ao inserir!");
+       		}//fim if 
     }
  
 	/**
 	*Metodo publico para pesquisar elementos na Arvore
 	*/
-    public boolean pesquisar(String s) throws Exception {
-       return pesquisar(s, raiz, 0);
-    }
+    	public boolean pesquisar(String s) throws Exception {
+      		return pesquisar(s, raiz, 0);
+    	}
  
 	/**
 	*Metodo privado para pesquisar o nome elementos na arvore
 	*/
-    private boolean pesquisar(String s, No no, int i) throws Exception {
-    	boolean resp;
+    	private boolean pesquisar(String s, No no, int i) throws Exception {
+    		boolean resp;
  
-       	if(no.prox[s.charAt(i)] == null){
+       		if(no.prox[s.charAt(i)] == null){
 			resp = false;
 			comp++;
-       	}else if(i == s.length() - 1){
+       		}else if(i == s.length() - 1){
 			resp = (no.prox[s.charAt(i)].folha == true);
 			comp+=2;
-       	}else if(i < s.length() - 1 ){
+       		}else if(i < s.length() - 1 ){
 			resp = pesquisar(s, no.prox[s.charAt(i)], i + 1);
 			comp+=3;
-       	}else{
-        	throw new Exception("Erro ao pesquisar!");
-       	}
+       		}else{
+        		throw new Exception("Erro ao pesquisar!");
+       		}
  
-       return resp;
-    }
+       		return resp;
+       }
  
  
 	/**
 	*Metodo publico para realizar o Merge das duas arvores
 	*@param arv Arvore a ser inserida na arvore resultante
 	*/
-    public void merge(ArvoreTrie arv) throws Exception{
-        merge("", arv.raiz);
-    }
+    	public void merge(ArvoreTrie arv) throws Exception{
+        	merge("", arv.raiz);
+    	}
  
 	/**
 	*Metodo privado para realizar o Merge das duas arvores
@@ -409,18 +408,18 @@ class ArvoreTrie {
 	*ao inves de mostrar na tela as palavras, as insere em uma nova arvore.
 	*@param No no raiz da arvore que tera suas palavras inseridas.
 	*/
-    private void merge(String s, No no) throws Exception{
-        if(no.folha == true){
-            //System.out.println("Palavra: " + (s + no.elemento));
-            inserirMerge(s + no.elemento);
-        }else {
-            for(int i = 0; i < no.prox.length; i++){
-                if(no.prox[i] != null){
-                    //System.out.println("ESTOU EM (" + no.elemento + ") E VOU PARA (" + no.prox[i].elemento + ")");
-                	merge(s + no.elemento, no.prox[i]);
-                }//fim if
-            }//fim for i
-        }//fim if
+    	private void merge(String s, No no) throws Exception{
+        	if(no.folha == true){
+            		//System.out.println("Palavra: " + (s + no.elemento));
+            		inserirMerge(s + no.elemento);
+        	}else {
+            		for(int i = 0; i < no.prox.length; i++){
+                		if(no.prox[i] != null){
+                    			//System.out.println("ESTOU EM (" + no.elemento + ") E VOU PARA (" + no.prox[i].elemento + ")");
+                			merge(s + no.elemento, no.prox[i]);
+                		}//fim if
+            		}//fim for i
+        	}//fim if
     }
 
     public void mostrar() throws Exception{
@@ -441,6 +440,9 @@ class ArvoreTrie {
         }//fim if
 	}
 	
+	/**
+    	*Retorna o numero de comparacoes realizadas pelo programa
+    	*/
 	public int getComp(){
 		return this.comp;
 	}
