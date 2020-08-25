@@ -53,7 +53,7 @@ void mostrarInsercao(Celula* i, int j);
 
 //METODO PRINCIPAL====================================================================
 int main(){
-    char nomeArq[200];
+    	char nomeArq[200];
 	scanf("%s", nomeArq);
 	while(nomeArq[0] != 'F' && nomeArq[1] != 'I' && nomeArq[2] != 'M'){
 		Personagem personagem;
@@ -63,19 +63,19 @@ int main(){
         scanf("%s",  nomeArq);
 	}//fim while
 
-    int num; //Quantidade de registros a serem inseridos/removidos
-    scanf("%d", &num);
-    char comando[100];
+    	int num; //Quantidade de registros a serem inseridos/removidos
+    	scanf("%d", &num);
+    	char comando[100];
 
-    for(int j = 0; j < num; j++){
-        fflush(stdin);
-        scanf(" %[^\n]s", comando);
-        interpretar(comando);
-    }//fim for j
+    	for(int j = 0; j < num; j++){
+        	fflush(stdin);
+        	scanf(" %[^\n]s", comando);
+        	interpretar(comando);
+    	}//fim for j
 
-    mostrar();
+    	mostrar();
 
-    return 0;
+    	return 0;
 }
 
 /**
@@ -132,8 +132,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
