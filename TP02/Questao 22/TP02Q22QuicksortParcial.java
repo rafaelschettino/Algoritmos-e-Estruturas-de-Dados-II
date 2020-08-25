@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -142,11 +142,11 @@ class Personagem{
 
 	/**
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -221,13 +221,13 @@ class Personagem{
 public class TP02Q22QuicksortParcial{
     public static void main(String[] args) throws Exception{
         MyIO.setCharset("UTF-8");
-		Lista lista = new Lista(1000);
-		for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			lista.inserirFim(personagem);
-			//personagem.imprimir();
-        }
+	Lista lista = new Lista(1000);
+	for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		lista.inserirFim(personagem);
+		//personagem.imprimir();
+        }//fim for
         
         int k = 10;
         long inicio = now();
@@ -236,9 +236,9 @@ public class TP02Q22QuicksortParcial{
         lista.insercaoPorNome();
         long fim = now();
         double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_quicksortParcial.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
+	FileWriter arq = new FileWriter("matrícula_quicksortParcial.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
 
         arq.close();
         lista.mostrar(k);
@@ -248,9 +248,9 @@ public class TP02Q22QuicksortParcial{
     *Retorna o timestamp atual
     *@return timestamp atual
     */
-	public static long now(){
-		return new Date().getTime();
-	}
+    public static long now(){
+	return new Date().getTime();
+    }
 }
 
 /**
@@ -460,20 +460,20 @@ class Lista{
     */
     public void insercaoPorNome(){
         for(int i = 1; i < n; i++) {
-			Personagem tmp = array[i].clone();
-			mov++;
+	    Personagem tmp = array[i].clone();
+	    mov++;
             int j = i - 1;
 
             //Caso as cores de cabelo de dois elementos sejam iguais, a ordenacao entre eles ocorre por nome
             while((j >= 0) && (array[j].getCorDoCabelo().compareTo(tmp.getCorDoCabelo()) == 0) && (array[j].getNome().compareTo(tmp.getNome()) > 0)){
-				array[j + 1] = array[j].clone();
-				comp++;
+		array[j + 1] = array[j].clone();
+		comp++;
                 j--;
             }//fim while
-			array[j + 1] = tmp;
-			mov++;
+	    array[j + 1] = tmp;
+	    mov++;
         }//fim for i
-	}
+     }
 
     /*
     *Retorna o numero de comparacoes realizadas pelo programa
