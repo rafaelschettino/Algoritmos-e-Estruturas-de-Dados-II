@@ -60,7 +60,7 @@ int main(){
 		personagem = lerPersonagem(personagem, nomeArq);
 		fflush(stdin);
 		inserir(personagem);
-        scanf("%s",  nomeArq);
+        	scanf("%s",  nomeArq);
 	}//fim while
 
     	int num; //Quantidade de registros a serem inseridos/removidos
