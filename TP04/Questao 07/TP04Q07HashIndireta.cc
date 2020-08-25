@@ -51,7 +51,7 @@ class Personagem{
 *Construtor da classe
 */
 Personagem::Personagem(){
-    setNome("");
+    	setNome("");
 	setAltura(0);
 	setPeso(0);
 	setCorDoCabelo("");
@@ -201,8 +201,8 @@ void Personagem::lerPersonagem(char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		setPeso(0);
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        setPeso(1358);
-    }else{
+        	setPeso(1358);
+    	}else{
 		setPeso(atof(peso_aux));
 	}//fim if
 	free(peso_aux);
@@ -215,7 +215,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	corDoCabelo_aux[i-9] = '\0';
 	//strcpy(personagem.corDoCabelo, corDoCabelo_aux);
-    setCorDoCabelo(corDoCabelo_aux);
+    	setCorDoCabelo(corDoCabelo_aux);
 	free(corDoCabelo_aux);
 
 	//Definir atributo cor da pele
@@ -226,7 +226,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	corDaPele_aux[i-14] = '\0';
 	//strcpy(personagem.corDaPele, corDaPele_aux);
-    setCorDaPele(corDaPele_aux);
+    	setCorDaPele(corDaPele_aux);
 	free(corDaPele_aux);
 
 	//Definir atribuot cor dos olhos
@@ -237,7 +237,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	corDosOlhos_aux[i-13] = '\0';
 	//strcpy(personagem.corDosOlhos, corDosOlhos_aux);
-    setCorDosOlhos(corDosOlhos_aux);
+    	setCorDosOlhos(corDosOlhos_aux);
 	free(corDosOlhos_aux);
 
 	//Definir atributo ano de nascimento
@@ -248,7 +248,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	anoNascimento_aux[i-14] = '\0';
 	//strcpy(personagem.anoNascimento, anoNascimento_aux);
-    setAnoNascimento(anoNascimento_aux);
+    	setAnoNascimento(anoNascimento_aux);
 	free(anoNascimento_aux);
 
 	//Definir atributo genero
@@ -259,7 +259,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	genero_aux[i-10] = '\0';
 	//strcpy(personagem.genero, genero_aux);
-    setGenero(genero_aux);
+    	setGenero(genero_aux);
 	free(genero_aux);
 
 	//Definir atributo homeworld
@@ -270,7 +270,7 @@ void Personagem::lerPersonagem(char* nomeArq){
 	}//fim for i
 	homeworld_aux[i-13] = '\0';
 	//strcpy(personagem.homeworld, homeworld_aux);
-    setHomeWorld(homeworld_aux);
+    	setHomeWorld(homeworld_aux);
 	free(homeworld_aux);
 
 	fclose(arq);
@@ -416,36 +416,36 @@ int HashIndiretoLista::getComp(){
 
 //METODO PRINCIPAL =================================
 int main(){
-    HashIndiretoLista* tabela = new HashIndiretoLista(25);
-    string nome_pesquisa;
-    char nomeArq[200];
-    scanf("%s", nomeArq);
-    while(nomeArq[0] != 'F' && nomeArq[1] != 'I' && nomeArq[2] != 'M'){
+   	HashIndiretoLista* tabela = new HashIndiretoLista(25);
+   	string nome_pesquisa;
+    	char nomeArq[200];
+    	scanf("%s", nomeArq);
+    	while(nomeArq[0] != 'F' && nomeArq[1] != 'I' && nomeArq[2] != 'M'){
 		Personagem* personagem = new Personagem();
 		personagem->lerPersonagem(nomeArq);
 		fflush(stdin);
 		tabela->inserirInicio(personagem);
-        scanf("%s",  nomeArq);
+        	scanf("%s",  nomeArq);
 	}//fim while
 
-    clock_t comeco = clock();
+    	clock_t comeco = clock();
 	cin.ignore();
-    getline(cin, nome_pesquisa);
-    while(nome_pesquisa.compare("FIM") != 0){
-        cout << nome_pesquisa << " ";
-        bool resp = tabela->pesquisar(nome_pesquisa);
+    	getline(cin, nome_pesquisa);
+    	while(nome_pesquisa.compare("FIM") != 0){
+        	cout << nome_pesquisa << " ";
+        	bool resp = tabela->pesquisar(nome_pesquisa);
 		if(resp){
 			cout << "SIM";
 		}else{
 			cout << "NÃO";
 		}//fim if
 		cout << "\n";
-    	getline(cin, nome_pesquisa);
-    }//fim while
-    clock_t fim = clock();
+    		getline(cin, nome_pesquisa);
+    	}//fim while
+    	clock_t fim = clock();
 	double total = (fim-comeco) / 1000.0;
 	FILE *arq = fopen("matrícula_hashIndireta.txt", "w");
-    fprintf(arq, "651636\t%lf\t%d", total, tabela->getComp());
+    	fprintf(arq, "651636\t%lf\t%d", total, tabela->getComp());
 
-    fclose(arq);
+    	fclose(arq);
 }
