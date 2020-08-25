@@ -239,38 +239,38 @@ public class TP03Q05MatrizDinamica{
         
         n = MyIO.readInt();
         for(int k = 0; k < n; k++){
-            l = MyIO.readInt();
-            c = MyIO.readInt();
-            Matriz a = new Matriz(l, c);
-            int elemento;
-            //Insere os elementos na primeira matriz
-            for(int i = 0; i < l; i++){
-                for(int j = 0; j < c; j++){
-                    elemento = MyIO.readInt();
-                    a.insereElemento(i, j, elemento);
-                }//fim for j
-            }//fim for i
+                l = MyIO.readInt();
+                c = MyIO.readInt();
+                Matriz a = new Matriz(l, c);
+                int elemento;
+                //Insere os elementos na primeira matriz
+                for(int i = 0; i < l; i++){
+                    for(int j = 0; j < c; j++){
+                        elemento = MyIO.readInt();
+                        a.insereElemento(i, j, elemento);
+                    }//fim for j
+                }//fim for i
 
-            l2 = MyIO.readInt();
-            c2 = MyIO.readInt();
-            Matriz b = new Matriz(l2, c2);
-            int elemento2;
-            //Insere os elementos na segunda matriz
-            for(int i = 0; i < l2; i++){
-                for(int j = 0; j < c2; j++){
-                    elemento2 = MyIO.readInt();
-                    b.insereElemento(i, j, elemento2);
-                }//fim for j
-            }//fim for i
+                l2 = MyIO.readInt();
+                c2 = MyIO.readInt();
+                Matriz b = new Matriz(l2, c2);
+                int elemento2;
+                //Insere os elementos na segunda matriz
+                for(int i = 0; i < l2; i++){
+                    for(int j = 0; j < c2; j++){
+                        elemento2 = MyIO.readInt();
+                        b.insereElemento(i, j, elemento2);
+                    }//fim for j
+                }//fim for i
 
             
-            Matriz soma = a.soma(b);
-            Matriz multiplicacao = a.multiplicacao(b);
+                Matriz soma = a.soma(b);
+                Matriz multiplicacao = a.multiplicacao(b);
 
-            a.mostrarDiagonalPrincipal();
-            a.mostrarDiagonalSecundaria();
-            soma.mostrar();
-            multiplicacao.mostrar();
+                a.mostrarDiagonalPrincipal();
+                a.mostrarDiagonalSecundaria();
+                soma.mostrar();
+                multiplicacao.mostrar();
         }//fim for k
     }
 }
