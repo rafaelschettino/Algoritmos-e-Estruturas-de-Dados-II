@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -146,7 +146,7 @@ class Personagem{
     */
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -220,35 +220,35 @@ class Personagem{
 */
 public class TP03Q07QuicksortListaDupla {
     public static void main(String[] args) throws Exception{
-        MyIO.setCharset("UTF-8");
+    	MyIO.setCharset("UTF-8");
         ListaDupla lista_dupla = new ListaDupla();
         for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-            lista_dupla.inserirFim(personagem);
-        }
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+            	lista_dupla.inserirFim(personagem);
+        }//fim for
 
-		long inicio = now();
-		lista_dupla.quicksort();
-		//Realiza o metodo de insercao para ordenar pelo atributo nome, aqueles personagens que tem cor de cabelo igual
-		lista_dupla.insercaoPorNome();
-		long fim = now();
-		double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_quicksort2.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+lista_dupla.getComp()+"\t"+lista_dupla.getMov()+"\t"+time);
+	long inicio = now();
+	lista_dupla.quicksort();
+	//Realiza o metodo de insercao para ordenar pelo atributo nome, aqueles personagens que tem cor de cabelo igual
+	lista_dupla.insercaoPorNome();
+	long fim = now();
+	double time = (fim-inicio)/1000.0;
+	FileWriter arq = new FileWriter("matrícula_quicksort2.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+lista_dupla.getComp()+"\t"+lista_dupla.getMov()+"\t"+time);
 		
         arq.close();        
         lista_dupla.mostrar();
-	}
+    }
 	
-	/**
+    /**
     *Retorna o timestamp atual
     *@return timestamp atual
     */
-	public static long now(){
-		return new Date().getTime();
-	}
+     public static long now(){
+	return new Date().getTime();
+     }
 }
 
 class CelulaDupla {
@@ -268,7 +268,7 @@ class CelulaDupla {
 	public CelulaDupla(Personagem elemento) {
 		this.elemento = elemento.clone();
 		this.ant = this.prox = null;
-    }
+    	}
 }
 
 class ListaDupla {
@@ -299,14 +299,14 @@ class ListaDupla {
 			ultimo = tmp;
 		}else{
 			tmp.prox.ant = tmp;
-		}
+		}//fim if
 		tmp = null;
 	}
 
 	/**
-	 * Insere um elemento na ultima posicao da lista.
-	 * @param x Personagem elemento a ser inserido.
-	 */
+	*Insere um elemento na ultima posicao da lista.
+	*@param x Personagem elemento a ser inserido.
+	*/
 	public void inserirFim(Personagem x) {
 		ultimo.prox = new CelulaDupla(x);
 		ultimo.prox.ant = ultimo;
@@ -339,7 +339,7 @@ class ListaDupla {
 	public Personagem removerFim() throws Exception {
 		if (primeiro == ultimo) {
 			throw new Exception("Erro ao remover (vazia)!");
-		} 
+		}//fim if
 		Personagem resp = ultimo.elemento.clone();
 		ultimo = ultimo.ant;
 		ultimo.prox.ant = null;
@@ -429,16 +429,16 @@ class ListaDupla {
 		System.out.print("[ ");
 		for (CelulaDupla i = ultimo; i != primeiro; i = i.ant){
 			System.out.print(i.elemento + " ");
-		}
+		}//fim for
 		System.out.println("] "); // Termina de mostrar.
 	}
 
     /**
-     * Realiza a primeira chamada da recursao
-     */
-	public void quicksort(){
-		quicksort(0, tamanho()-1);
-	}
+    *Realiza a primeira chamada da recursao
+    */
+    public void quicksort(){
+	quicksort(0, tamanho()-1);
+    }
 
     /**
     *Realiza a ordenacao da Lista dupla utilizando o metodo Quicksort
@@ -472,8 +472,8 @@ class ListaDupla {
 			}//fim if
 		}//fim while
 
-		if(esq < j)	quicksort(esq, j);
-		if(dir > i)	quicksort(i, dir);
+		if(esq < j) quicksort(esq, j);
+		if(dir > i) quicksort(i, dir);
 
 	}
 
@@ -529,12 +529,12 @@ class ListaDupla {
 	}
 
 	/**
-	 * Calcula e retorna o tamanho, em numero de elementos, da lista.
-	 * @return resp int tamanho
-	 */
+	* Calcula e retorna o tamanho, em numero de elementos, da lista.
+	* @return resp int tamanho
+	*/
 	public int tamanho() {
 		int tamanho = 0; 
 		for(CelulaDupla i = primeiro; i != ultimo; i = i.prox, tamanho++);
 		return tamanho;
-    }
+        }
 }
