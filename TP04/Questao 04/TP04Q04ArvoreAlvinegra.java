@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/*
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -142,11 +142,11 @@ class Personagem{
 
 	/*
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -223,29 +223,29 @@ public class TP04Q04ArvoreAlvinegra {
         MyIO.setCharset("UTF-8");
         Alvinegra alvinegra = new Alvinegra();
         for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			alvinegra.inserir(personagem);
-        }
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		alvinegra.inserir(personagem);
+        }//fim for
 
         long inicio = now();
         for(String nome_pesquisa = MyIO.readLine(); nome_pesquisa.equals("FIM") == false; nome_pesquisa = MyIO.readLine()){
-            MyIO.print(nome_pesquisa + " ");
-            boolean resp = alvinegra.pesquisar(nome_pesquisa);
-			if(resp){
-			    MyIO.println("SIM");
-			}
-			else{
-			    MyIO.println("N"+((char)195)+"O");
-			}//fim if
+            	MyIO.print(nome_pesquisa + " ");
+            	boolean resp = alvinegra.pesquisar(nome_pesquisa);
+		if(resp){
+		    MyIO.println("SIM");
+		}
+		else{
+		    MyIO.println("N"+((char)195)+"O");
+		}//fim if
         }//fim for
         long fim = now();
-		double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_alvinegra.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+time+"\t"+alvinegra.getComp());
+	double time = (fim-inicio)/1000.0;
+	FileWriter arq = new FileWriter("matrícula_alvinegra.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+time+"\t"+alvinegra.getComp());
 
-		arq.close();
+	arq.close();
         
         //alvinegra.mostrarPre();
     }
@@ -254,9 +254,9 @@ public class TP04Q04ArvoreAlvinegra {
     *Retorna o timestamp atual
     *@return timestamp atual
     */
-	public static long now(){
-		return new Date().getTime();
-	}
+    public static long now(){
+    	return new Date().getTime();
+    }
 }
 
 /**
@@ -339,7 +339,7 @@ class Alvinegra{
         return resp;
     }
 
-    /**
+    	/**
 	*Metodo publico iterativo para exibir elementos.
 	*/
 	public void mostrarPre() {
@@ -518,6 +518,9 @@ class Alvinegra{
         return rotacaoDir(no);
     }
 
+    /**
+    *Retorna o numero de comparacoes realizadas pelo programa
+    */
     public int getComp(){
         return this.comp;
     }
