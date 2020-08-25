@@ -63,7 +63,7 @@ int main(){
 	}//fim while
     
 	clock_t inicio = clock();
-    quicksort();
+    	quicksort();
 	//Realiza o metodo de insercao para ordenar pelo atributo nome, aqueles personagens que tem cor de cabelo igual
 	insercaoPorNome();
 	clock_t fim = clock();
@@ -72,7 +72,7 @@ int main(){
 	fprintf(arq, "651636\t%d\t%d\t%lf", getComp(), getMov(), total);
 
 	fclose(arq);
-    mostrar();
+   	mostrar();
 
 	return 0;
 }
@@ -131,8 +131,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
@@ -400,21 +400,21 @@ void quicksort(){
 void quicksortRec(int esq, int dir){
     int i = esq, j = dir;
     Personagem pivo = clone(array[(dir+esq)/2]);
-	mov++;
+    mov++;
     while(i <= j) {
         while(strcmp(array[i].corDoCabelo, pivo.corDoCabelo) < 0){
-			i++;
-			comp++;
-		}//fim while
+		i++;
+		comp++;
+	}//fim while
         while(strcmp(array[j].corDoCabelo, pivo.corDoCabelo) > 0){
-			j--;
-			comp++;
-		}//fim while
+		j--;
+		comp++;
+	}//fim while
         if(i <= j){
-            swap(i, j);
-            i++;
-            j--;
-			mov += 3;
+            	swap(i, j);
+            	i++;
+            	j--;
+	    	mov += 3;
         }//fim if
     }//fim while
     if (esq < j)  quicksortRec(esq, j);
@@ -439,17 +439,17 @@ void insercaoPorNome(){
 	for(int i = 1; i < n; i++) {
 		Personagem tmp = clone(array[i]);
 		mov++;
-        int j = i - 1;
+        	int j = i - 1;
 
-        //Caso as cores do cabelo de dois elementos sejam iguais, a ordenacao entre eles ocorre por nome
-       	while((j >= 0) && (strcmp(array[j].corDoCabelo, tmp.corDoCabelo) == 0) && (strcmp(array[j].nome, tmp.nome) > 0)){
+        	//Caso as cores do cabelo de dois elementos sejam iguais, a ordenacao entre eles ocorre por nome
+       		while((j >= 0) && (strcmp(array[j].corDoCabelo, tmp.corDoCabelo) == 0) && (strcmp(array[j].nome, tmp.nome) > 0)){
 			array[j + 1] = clone(array[j]);
 			comp++;
-            j--;
-        }//fim while
+            		j--;
+        	}//fim while
 		array[j + 1] = tmp;
 		mov++;
-    }//fim for i
+    	}//fim for i
 }
 
 /**
