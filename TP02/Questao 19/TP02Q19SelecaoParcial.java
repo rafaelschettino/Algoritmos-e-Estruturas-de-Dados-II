@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -146,7 +146,7 @@ class Personagem{
     */
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -221,24 +221,24 @@ class Personagem{
 public class TP02Q19SelecaoParcial{
     public static void main(String[] args) throws Exception{
         MyIO.setCharset("UTF-8");
-		Lista lista = new Lista(1000);
-		for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			lista.inserirFim(personagem);
-			//personagem.imprimir();
-        }
+	Lista lista = new Lista(1000);
+	for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		lista.inserirFim(personagem);
+		//personagem.imprimir();
+        }//fim for
 
         int k = 10;
         long inicio = now();
-		lista.selecaoParcial(k);
-		long fim = now();
-		double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_selecaoparcial.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
+	lista.selecaoParcial(k);
+	long fim = now();
+	double time = (fim-inicio)/1000.0;
+	FileWriter arq = new FileWriter("matrícula_selecaoparcial.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
 
-		arq.close();
+	arq.close();
         lista.mostrar(k);
     }
 
@@ -246,9 +246,9 @@ public class TP02Q19SelecaoParcial{
     *Retorna o timestamp atual
     *@return timestamp atual
     */
-	public static long now(){
-		return new Date().getTime();
-	}
+    public static long now(){
+	return new Date().getTime();
+    }
 }
 
 /**
@@ -258,9 +258,9 @@ public class TP02Q19SelecaoParcial{
 */
 class Lista{
     private Personagem[] array;
-	private int n;
-	private int comp = 0;	//Conta o numero de comparacoes realizadas pelo programa
-	private int mov = 0;	//Conta o numero de movimentacoes realizadas pelo programa
+    private int n;
+    private int comp = 0;	//Conta o numero de comparacoes realizadas pelo programa
+    private int mov = 0;	//Conta o numero de movimentacoes realizadas pelo programa
 
     /*
     *Construtor da classe.
@@ -395,22 +395,22 @@ class Lista{
         return resp;
     }
 
-	/**
-	*Realiza a ordenacao parcial do array, utilizando o metodo de selecao
-	*@param int k quantidade de elementos que serao ordenados
-	*/
+    /**
+    *Realiza a ordenacao parcial do array, utilizando o metodo de selecao
+    *@param int k quantidade de elementos que serao ordenados
+    */
     public void selecaoParcial(int k){
         int i, j, Min;
         for(i = 0; i <= k; i++){
             Min = i;
             for(j = i+1; j < n; j++){
-				comp++;
+		comp++;
                 if(array[j].getNome().compareTo(array[Min].getNome()) < 0){
-					Min = j;
+			Min = j;
                 }//fim if
             }//fim for j
-			swap(Min, i);
-			mov+=3;
+	    swap(Min, i);
+	    mov+=3;
         }//fim for i
     }
 
@@ -425,21 +425,21 @@ class Lista{
         array[j] = temp.clone();
     }
 	
-	int getComp(){
-		return comp;
-	}
+    int getComp(){
+ 	return comp;
+    }
 
-	int getMov(){
-		return mov;
-	}
+    int getMov(){
+	return mov;
+    }
 
     /**
     *Mostra os elementos da lista separados por espacos
     */
     public void mostrar(int k){
         for(int i = 0; i < k; i++){
-			//MyIO.print("["+i+"] ");
-			array[i].imprimir();
+		//MyIO.print("["+i+"] ");
+		array[i].imprimir();
         }//fim for i
     }
 }
