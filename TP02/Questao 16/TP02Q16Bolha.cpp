@@ -58,14 +58,14 @@ int main(){
 	}//fim while
     
 	clock_t inicio = clock();
-    bubbleSort();
+    	bubbleSort();
 	clock_t fim = clock();
 	double total = (fim-inicio) / 1000.0;
 	FILE *arq = fopen("matrícula_bolha.txt", "w");
 	fprintf(arq, "651636\t%d\t%d\t%lf", getComp(), getMov(), total);
 
 	fclose(arq);
-    mostrar();
+    	mostrar();
 
 	return 0;
 }
@@ -124,8 +124,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
@@ -386,17 +386,17 @@ Personagem remover(int pos){
 *Metodo de ordenacao BubbleSort
 */
 void bubbleSort(){
-    for(int i = (n - 1); i > 0; i--) {
-        for(int j = 0; j < i; j++) {
-            if(strcmp(array[j].anoNascimento, array[j + 1].anoNascimento) > 0) {
-                Personagem auxiliar = clone(array[j + 1]);
-                array[j + 1] = clone(array[j]);
-                array[j] = clone(auxiliar);
-                mov += 3;
-                comp++;
-            }//fim if
-        }//fim for j
-    }//fim for i
+	for(int i = (n - 1); i > 0; i--) {
+    		for(int j = 0; j < i; j++) {
+            		if(strcmp(array[j].anoNascimento, array[j + 1].anoNascimento) > 0) {
+                		Personagem auxiliar = clone(array[j + 1]);
+                		array[j + 1] = clone(array[j]);
+                		array[j] = clone(auxiliar);
+                		mov += 3;
+                		comp++;
+            		}//fim if
+        	}//fim for j
+    	}//fim for i
 }
 
 /**
