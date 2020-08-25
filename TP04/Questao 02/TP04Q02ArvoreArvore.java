@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/*
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -142,11 +142,11 @@ class Personagem{
 
 	/*
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -226,12 +226,12 @@ public class TP04Q02ArvoreArvore {
 			Personagem personagem = new Personagem();
 			personagem.lerPersonagem(nomeArq);
 			arvore.inserir(personagem);
-		}
+		}//fim for
 		
 		long inicio = now();
 		for(String nome_pesquisa = MyIO.readLine(); nome_pesquisa.equals("FIM") == false; nome_pesquisa = MyIO.readLine()){
-            MyIO.print(nome_pesquisa + " ");
-            boolean resp = arvore.pesquisar(nome_pesquisa);
+            		MyIO.print(nome_pesquisa + " ");
+            		boolean resp = arvore.pesquisar(nome_pesquisa);
 			if(resp){
 			    MyIO.println("SIM");
 			}
@@ -251,21 +251,21 @@ public class TP04Q02ArvoreArvore {
 	}
 	
 	/**
-    *Retorna o timestamp atual
-    *@return timestamp atual
-    */
+    	*Retorna o timestamp atual
+    	*@return timestamp atual
+    	*/
 	public static long now(){
 		return new Date().getTime();
 	}
 }
 
 class No {
-    public int elemento;   //Conteudo do no.
+    	public int elemento;   //Conteudo do no.
 	public No esq;  //No da esquerda.
 	public No dir;  //No da direita.
-    public No2 outro;
+    	public No2 outro;
 	
-    /**
+    	/**
 	*Construtor da classe.
 	*@param elemento Conteudo do no.
 	*/
@@ -290,11 +290,11 @@ class No {
 }
 
 class No2{
-    public Personagem elemento; //Conteudo do no.
+    	public Personagem elemento; //Conteudo do no.
 	public No2 esq; //No da esquerda.
-    public No2 dir; //No da direita.
+    	public No2 dir; //No da direita.
     
-    /**
+    	/**
 	*Construtor da classe.
 	*@param elemento Conteudo do no.
 	*/
@@ -303,7 +303,7 @@ class No2{
 		this.esq = this.dir = null;
     }
     
-    /**
+    	/**
 	*Construtor da classe.
 	*@param elemento Conteudo do no.
 	*@param esq No2 da esquerda.
@@ -428,11 +428,11 @@ class ArvoreArvore{
 	}
 
 	/**
-    *Metodo publico iterativo para pesquisar elemento.
-    *@param String x Nome do elemento que sera procurado.
-    *@return <code>true</code> se o elemento existir.
-    *<code>false</code> em caso contrario.
-    */
+    	*Metodo publico iterativo para pesquisar elemento.
+    	*@param String x Nome do elemento que sera procurado.
+    	*@return <code>true</code> se o elemento existir.
+    	*<code>false</code> em caso contrario.
+    	*/
 	public boolean pesquisar(String x){
 		MyIO.print("raiz ");
 		return pesquisar(x, raiz);
@@ -445,7 +445,7 @@ class ArvoreArvore{
 	*@param i No em analise.
 	*@return <code>true</code> se o elemento existir,
 	*<code>false</code> em caso contrario.
-    */
+    	*/
 	private boolean pesquisar(String x, No i){
 		boolean resp;
 		if(i != null){
