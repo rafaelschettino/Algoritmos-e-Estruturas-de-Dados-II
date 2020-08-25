@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/*
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		}else{
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -223,9 +223,9 @@ public class TP04Q01ArvoreBinaria {
         //MyIO.setCharset("UTF-8");
         ArvoreBinaria arvore = new ArvoreBinaria();
         for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			arvore.inserir(personagem);
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		arvore.inserir(personagem);
         }//fim for
 
 	long inicio = now();
@@ -248,7 +248,7 @@ public class TP04Q01ArvoreBinaria {
         arq.close();
 
         //arvore.mostrarPre();
-	}
+    }
 	
 	/**
     	*Retorna o timestamp atual
@@ -315,11 +315,11 @@ class ArvoreBinaria{
     }
 
     /**
-	*Metodo privado recursivo para pesquisar elemento.
-	*@param x Elemento que sera procurado.
-	*@param i No em analise.
-	*@return <code>true</code> se o elemento existir,
-	*<code>false</code> em caso contrario.
+    *Metodo privado recursivo para pesquisar elemento.
+    *@param x Elemento que sera procurado.
+    *@param i No em analise.
+    *@return <code>true</code> se o elemento existir,
+    *<code>false</code> em caso contrario.
     */
     private boolean pesquisar(String x, No i){
         boolean resp;
