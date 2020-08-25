@@ -33,7 +33,7 @@ class Personagem{
 		setCorDosOlhos("");
 		setAnoNascimento("");
 		setGenero("");
-	    setHomeWorld("");	
+	    	setHomeWorld("");	
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Personagem{
 		setCorDosOlhos(corDosOlhos);
 		setAnoNascimento(anoNascimento);
 		setGenero(genero);
-	    setHomeWorld(homeworld);	
+	    	setHomeWorld(homeworld);	
 	}
 
 	public void setNome(String nome){
@@ -142,11 +142,11 @@ class Personagem{
 
 	/**
 	*Le o arquivo e seta os atributos da classe.
-    *@param String nomeArq nome do arquivo a ser lido
-    */
+    	*@param String nomeArq nome do arquivo a ser lido
+    	*/
 	public void lerPersonagem(String nomeArq) throws Exception{
 		FileReader file = new FileReader(nomeArq);
-        BufferedReader br = new BufferedReader(file);
+        	BufferedReader br = new BufferedReader(file);
 		String linha = br.readLine();
 		
 		//Definir atributo nome
@@ -202,11 +202,11 @@ class Personagem{
 			posFim = s.indexOf(depois);
 		} else {
 			posFim = s.indexOf(depois, posInicio);
-		}
+		}//fim if
 
 		if(0 <= posInicio && posInicio < posFim && posFim < s.length()){
 			resp = s.substring(posInicio, posFim);
-		}
+		}//fim if
 
 		return resp;
 	}
@@ -221,13 +221,13 @@ class Personagem{
 public class TP02Q17Mergesort{
     public static void main(String[] args) throws Exception{
         MyIO.setCharset("UTF-8");
-		Lista lista = new Lista(1000);
-		for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
-			Personagem personagem = new Personagem();
-			personagem.lerPersonagem(nomeArq);
-			lista.inserirFim(personagem);
-			//personagem.imprimir();
-        }
+	Lista lista = new Lista(1000);
+	for(String nomeArq = MyIO.readLine(); nomeArq.equals("FIM") == false; nomeArq = MyIO.readLine()){
+		Personagem personagem = new Personagem();
+		personagem.lerPersonagem(nomeArq);
+		lista.inserirFim(personagem);
+		//personagem.imprimir();
+        }//fim for
         
         long inicio = now();
         lista.mergesort();
@@ -235,9 +235,9 @@ public class TP02Q17Mergesort{
         lista.insercaoPorNome();
         long fim = now();
         double time = (fim-inicio)/1000.0;
-		FileWriter arq = new FileWriter("matrícula_mergesort.txt");
-		PrintWriter escreverArq = new PrintWriter(arq);
-		escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
+	FileWriter arq = new FileWriter("matrícula_mergesort.txt");
+	PrintWriter escreverArq = new PrintWriter(arq);
+	escreverArq.printf("651636"+"\t"+lista.getComp()+"\t"+lista.getMov()+"\t"+time);
 
         arq.close();
         lista.mostrar();
@@ -247,9 +247,9 @@ public class TP02Q17Mergesort{
     *Retorna o timestamp atual
     *@return timestamp atual
     */
-	public static long now(){
-		return new Date().getTime();
-	}
+    public static long now(){
+    	return new Date().getTime();
+    }
 }
 
 /**
@@ -396,67 +396,66 @@ class Lista{
         return resp;
     }
 
-	public void mergesort(){
-		mergesort(0, n-1);
-	}
+    public void mergesort(){
+	mergesort(0, n-1);
+    }
 
     public void mergesort(int indiceInicio, int indiceFim) {
-		//Condicional que verifica a validade dos parâmetros passados.
-		if (array != null && indiceInicio < indiceFim && indiceInicio >= 0 && indiceFim < array.length && array.length != 0) {
-			int meio = ((indiceFim + indiceInicio) / 2);
-			mergesort(indiceInicio, meio);
-			mergesort(meio + 1, indiceFim);
+	//Condicional que verifica a validade dos parâmetros passados.
+	if (array != null && indiceInicio < indiceFim && indiceInicio >= 0 && indiceFim < array.length && array.length != 0) {
+		int meio = ((indiceFim + indiceInicio) / 2);
+		mergesort(indiceInicio, meio);
+		mergesort(meio + 1, indiceFim);
+		merge(indiceInicio, meio, indiceFim);
+	}//fim if
+    }
 
-			merge(indiceInicio, meio, indiceFim);
-		}//fim if
-	}
+    //Realiza a ordenacao da lista utilizando o metodo Mergesort
+    public void merge(int indiceInicio, int meio, int indiceFim) {
+	Personagem[] auxiliar = new Personagem[array.length];
 
-	//Realiza a ordenacao da lista utilizando o metodo Mergesort
-	public void merge(int indiceInicio, int meio, int indiceFim) {
-		Personagem[] auxiliar = new Personagem[array.length];
+	//Copiando o trecho da lista que vai ser ordenada
+	for (int i = indiceInicio; i <= indiceFim; i++) {
+		auxiliar[i] = array[i].clone();
+		mov++;
+	}//fim for i
 
-		//Copiando o trecho da lista que vai ser ordenada
-		for (int i = indiceInicio; i <= indiceFim; i++) {
-			auxiliar[i] = array[i].clone();
-			mov++;
-		}//fim for i
+	//Índices auxiliares
+	int i = indiceInicio;
+	int j = meio + 1;
+	int k = indiceInicio;
 
-		//Índices auxiliares
-		int i = indiceInicio;
-		int j = meio + 1;
-		int k = indiceInicio;
-
-		//Junção das listas ordenadas
-		while(i <= meio && j <= indiceFim){
-			if (auxiliar[i].getHomeWorld().compareTo(auxiliar[j].getHomeWorld()) < 0){
-				array[k] = auxiliar[i].clone();
-				mov++;
-				i++;
-			}else{
-				array[k] = auxiliar[j];
-				mov++;
-				j++;
-			}//fim if
-			k++;
-			comp++;
-		}//fim while
-
-		//Append de itens que não foram usados na Junção
-		while (i <= meio){
+	//Junção das listas ordenadas
+	while(i <= meio && j <= indiceFim){
+		if (auxiliar[i].getHomeWorld().compareTo(auxiliar[j].getHomeWorld()) < 0){
 			array[k] = auxiliar[i].clone();
 			mov++;
 			i++;
-			k++;
-		}//fim while
-
-		//Append de itens que não foram usados na Junção
-		while (j <= indiceFim){
-			array[k] = auxiliar[j].clone();
+		}else{
+			array[k] = auxiliar[j];
 			mov++;
 			j++;
-			k++;
-		}//fim while
-	} 
+		}//fim if
+		k++;
+		comp++;
+	}//fim while
+
+	//Append de itens que não foram usados na Junção
+	while (i <= meio){
+		array[k] = auxiliar[i].clone();
+		mov++;
+		i++;
+		k++;
+	}//fim while
+
+	//Append de itens que não foram usados na Junção
+	while (j <= indiceFim){
+		array[k] = auxiliar[j].clone();
+		mov++;
+		j++;
+		k++;
+	}//fim while
+    } 
 
     /**
     *Troca o conteudo de duas posicoes do array
@@ -475,20 +474,20 @@ class Lista{
     */
     public void insercaoPorNome(){
         for(int i = 1; i < n; i++) {
-			Personagem tmp = array[i].clone();
-			mov++;
+	    Personagem tmp = array[i].clone();
+	    mov++;
             int j = i - 1;
 
             //Caso os homeworlds de dois elementos sejam iguais, a ordenacao entre eles ocorre por nome
             while((j >= 0) && (array[j].getHomeWorld().compareTo(tmp.getHomeWorld()) == 0) && (array[j].getNome().compareTo(tmp.getNome()) > 0)){
-				array[j + 1] = array[j].clone();
-				comp++;
+		array[j + 1] = array[j].clone();
+		comp++;
                 j--;
             }//fim while
-			array[j + 1] = tmp;
-			mov++;
+	    array[j + 1] = tmp;
+	    mov++;
         }//fim for i
-	}
+    }
 
     /*
     *Retorna o numero de comparacoes realizadas pelo programa
@@ -509,8 +508,8 @@ class Lista{
     */
     public void mostrar(){
         for(int i = 0; i < n; i++){
-			//MyIO.print("["+i+"] ");
-			array[i].imprimir();
+	    //MyIO.print("["+i+"] ");
+	    array[i].imprimir();
         }//fim for i
     }
 }
