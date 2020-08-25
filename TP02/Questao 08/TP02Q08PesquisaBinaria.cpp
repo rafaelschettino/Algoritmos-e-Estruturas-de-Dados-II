@@ -52,22 +52,22 @@ int main(){
 		Personagem personagem;
 		personagem = lerPersonagem(personagem, nomeArq);
 		fflush(stdin);
-        inserirFim(personagem);
+        	inserirFim(personagem);
 		scanf("%s",  nomeArq);
 	}//fim while
 
-    char nome_pesquisa[50];
-	clock_t comeco = clock();
-    scanf(" %[^\n]s", nome_pesquisa);
-    while(nome_pesquisa[0] != 'F' && nome_pesquisa[1] != 'I' && nome_pesquisa[2] != 'M'){
-        bool resp = pesquisaBinaria(nome_pesquisa);
-        if(resp == true){
-            printf("SIM\n");
-        }else{
-            printf("NAO\n");
-        }//fim if
-        scanf(" %[^\n]s", nome_pesquisa);
-    }//fim while
+       	char nome_pesquisa[50];
+       	clock_t comeco = clock();
+    	scanf(" %[^\n]s", nome_pesquisa);
+   	while(nome_pesquisa[0] != 'F' && nome_pesquisa[1] != 'I' && nome_pesquisa[2] != 'M'){
+        	bool resp = pesquisaBinaria(nome_pesquisa);
+        	if(resp == true){
+            		printf("SIM\n");
+        	}else{
+           		printf("NAO\n");
+        	}//fim if
+        	scanf(" %[^\n]s", nome_pesquisa);
+    	}//fim while
 	clock_t fim = clock();
 	double total = (fim-comeco) / 1000.0;
 	FILE *arq = fopen("matrícula_binaria.txt", "w");
@@ -75,7 +75,7 @@ int main(){
 
 	fclose(arq);
 
-    return 0;
+    	return 0;
 }
 
 /**
@@ -132,8 +132,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
@@ -404,13 +404,13 @@ bool pesquisaBinaria(char* nome_pesquisa){
         if(strcmp(nome_pesquisa, array[meio].nome) == 0){
             resp = true;
             esq = n;
-			contador++;
+	    contador++;
         }else if(strcmp(nome_pesquisa, array[meio].nome) > 0){
             esq = meio + 1;
-			contador++;
+	    contador++;
         }else{
             dir = meio - 1;
-			contador++;
+	    contador++;
         }//fim if
     }//fim while
 
