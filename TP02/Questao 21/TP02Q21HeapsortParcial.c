@@ -133,8 +133,8 @@ Personagem lerPersonagem(Personagem personagem, char* nomeArq){
 	if(strcmp(peso_aux, "unknown") == 0){
 		personagem.peso = 0;
 	}else if(strcmp(peso_aux, "1,358") == 0){
-        personagem.peso = 1358;
-    }else{
+        	personagem.peso = 1358;
+    	}else{
 		personagem.peso = atof(peso_aux);
 	}//fim if
 	free(peso_aux);
@@ -471,11 +471,11 @@ void insercaoPorNome(){
        		while((j >= 0) && (array[j].altura == tmp.altura) && (strcmp(array[j].nome, tmp.nome) > 0)){
 			array[j + 1] = clone(array[j]);
 			comp++;
-            	j--;
+            		j--;
         	}//fim while
-	array[j + 1] = tmp;
-	mov++;
-    }//fim for i
+		array[j + 1] = tmp;
+		mov++;
+    	}//fim for i
 }
 
 /**
